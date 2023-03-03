@@ -5,7 +5,7 @@ target/
 !**/src/test/**/target/
 #Selenium tests#
 #seliumTests/SeleniumTests.java#
-SeleniumTests.*
+#SeleniumTests.*
 ### STS ###
 .apt_generated
 .classpath
