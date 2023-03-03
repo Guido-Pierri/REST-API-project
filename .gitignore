@@ -4,8 +4,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 #Selenium tests
-SeleniumTests.java
-
+src/test/java/seliumTests/SeleniumTests.java
 ### STS ###
 .apt_generated
 .classpath
@@ -20,6 +19,7 @@ SeleniumTests.java
 *.iws
 *.iml
 *.ipr
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
