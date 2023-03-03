@@ -438,7 +438,7 @@ void checkIfMensClothesCategoryIsCorrect(){
     @Disabled
     @DisplayName("Kontrollerar att alla 20 produkter har rätt namn")
     void checkAllNames(){
-String[] names = {"Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+    String[] names = {"Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
         "Mens Casual Premium Slim Fit T-Shirts",
         "Mens Cotton Jacket",
         "Mens Casual Slim Fit",
