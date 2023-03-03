@@ -3,8 +3,9 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-#Selenium tests
-src/test/java/seliumTests/SeleniumTests.java
+#Selenium tests#
+#seliumTests/SeleniumTests.java#
+seliumTests/SeleniumTests.java
 ### STS ###
 .apt_generated
 .classpath
