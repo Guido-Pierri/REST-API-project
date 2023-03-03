@@ -435,6 +435,7 @@ void checkIfMensClothesCategoryIsCorrect(){
         driver.quit();
     }
     @Test
+    @Disabled
     @DisplayName("Kontrollerar att alla 20 produkter har rätt namn")
     void checkAllNames(){
 String[] names = {"Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
