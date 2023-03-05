@@ -52,7 +52,8 @@ public class ProductService {
         if (product.isEmpty()) {
              throw new EntityNotFoundException(id);
         }
-        return productRepository.save(product.get());
+        //changed return to updatedProduct
+        return productRepository.save(updatedProduct);
     }
 
     public void deleteProduct(Integer id) {

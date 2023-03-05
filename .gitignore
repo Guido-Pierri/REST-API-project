@@ -5,6 +5,7 @@ target/
 !**/src/test/**/target/
 #Selenium tests#
 #seliumTests/SeleniumTests.java#
+#Ignorerar mina selenium test klass#
 SeleniumTests.*
 ### STS ###
 .apt_generated
