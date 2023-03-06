@@ -4,15 +4,12 @@ import com.example.produktapi.exception.BadRequestException;
 import com.example.produktapi.exception.EntityNotFoundException;
 import com.example.produktapi.model.Product;
 import com.example.produktapi.repository.ProductRepository;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
-import org.mockito.internal.verification.NoMoreInteractions;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.BDDMockito.*;
@@ -36,7 +33,7 @@ ArgumentCaptor<Product> productCaptor;
 ArgumentCaptor<Integer> idCaptor;
 
     @Test
-    @DisplayName("getAllProducts()")
+    @DisplayName("Testar getAllProducts()")
     void GetAllProducts_thenExactlyOneInteractionWithRepositoryMethodFindAll() {
         //when
         underTest.getAllProducts();
@@ -47,10 +44,9 @@ ArgumentCaptor<Integer> idCaptor;
 
     @Test
     @DisplayName("getAllCategories()")
-    void whenGetAllCategories_thenExactlyOneInteractionWithRepositoryMethodFindAllCategories() {
+    void whenTryingToGetAllCategories_thenExactlyOneInteractionWithRepositoryMethodFindAllCategories() {
         //when
         underTest.getAllCategories();
-
         //then
         verify(repository,times(1)).findAllCategories();
         verifyNoMoreInteractions(repository);
@@ -58,7 +54,7 @@ ArgumentCaptor<Integer> idCaptor;
 
     @Test
     @DisplayName("getProductsByCategory()")
-    void whenGetProductsByCategory_thenExactlyOneInteractionWithRepositoryMethodFindByCategory() {
+    void whenTryingToGetProductsByCategory_thenExactlyOneInteractionWithRepositoryMethodFindByCategory() {
         //given
         String category = "electronics";
         String titel = "vår test titel";
@@ -72,16 +68,15 @@ ArgumentCaptor<Integer> idCaptor;
 
     @Test
     @DisplayName("testar getProductById/ normalflöde")
-    void whenTryingToGetProductById_thenReturnProduct() {
+    void whenTryingToGetAProductById_thenReturnProduct() {
         //given
         String titel = "vår test titel";
         Product product = new Product(titel,4000.00,"","","");
         given(repository.findById(product.getId())).willReturn(Optional.of(product));
         //when
         Product product2 = underTest.getProductById(any());
-
         //then
-        assertEquals(product, product2);
+        assertEquals(product, product2,"");
     }
     @Test
     @DisplayName("testar getProductById/ felflöde")

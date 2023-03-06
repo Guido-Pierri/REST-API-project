@@ -15,15 +15,12 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     public ProductService(ProductRepository productRepository) {this.productRepository = productRepository;}
-
     public List<Product> getAllProducts() {return productRepository.findAll();}
-
     public List<String> getAllCategories() {
         return productRepository.findAllCategories();
     }
     public List<Product> getProductsByCategory(String category)
     //should it throw an exception if the category does not exist?
-
     {
         return productRepository.findByCategory(category);
     }
