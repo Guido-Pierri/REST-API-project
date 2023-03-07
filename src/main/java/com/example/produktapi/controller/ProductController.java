@@ -1,6 +1,5 @@
 package com.example.produktapi.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,13 +25,15 @@ public class ProductController {
 
     @GetMapping("/products/categories")
     ResponseEntity<List<String>> getAllCategories() {
-        List<String> allProducts = productService.getAllCategories();
-        return new ResponseEntity<List<String>>(allProducts, HttpStatus.OK);
+        //Should allProducts be names allCategories?
+        List<String> allCategories = productService.getAllCategories();
+        return new ResponseEntity<List<String>>(allCategories, HttpStatus.OK);
     }
 
     @GetMapping("/products/categories/{category}")
     ResponseEntity<List<Product>> getProductsByCategory(@PathVariable String category) {
-        List productsByCategory = productService.getProductsByCategory(category);
+        //Should be List<Product>?
+        List<Product> productsByCategory = productService.getProductsByCategory(category);
         return new ResponseEntity<List<Product>>(productsByCategory, HttpStatus.OK);
     }
 
