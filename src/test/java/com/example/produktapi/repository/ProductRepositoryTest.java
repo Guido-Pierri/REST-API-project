@@ -28,7 +28,7 @@ class ProductRepositoryTest {
 }
 
     @Test
-    @DisplayName("testar att söka alla produkter i en kategori och testar om det är rätt produkt")
+    @DisplayName("testar findByCategory() och söka alla produkter i en kategori och testar om det är rätt produkt")
     void whenSearchingForAnExistingCategory_thenReturnAllProductsInCategoryAndCheckItIsTheSameProductCategory() {
         //given
         String title = "En dator";
@@ -38,16 +38,25 @@ class ProductRepositoryTest {
                 category,
                 "Bra o ha",
                 "url");
+        String title2 = "En dator";
+        String category2 = "test category";
+        Product product2 = new Product(title,
+                23000.0,
+                category,
+                "Bra o ha",
+                "url");
         underTest.save(product);
         //when
         List<Product> listProduct = underTest.findByCategory(category);//returns all the products in the "electronics" category as a list
         //then
         Assertions.assertTrue(listProduct.contains(product));
-        Assertions.assertFalse(listProduct.isEmpty());
+        Assertions.assertFalse(listProduct.contains(product2));
         Assertions.assertEquals(category, listProduct.get(listProduct.lastIndexOf(product)).getCategory());//checks if the category of the product created is the same as the last product in the listProduct list returned
     }
+
+
     @Test
-    @DisplayName("testar att söka alla produkter i en kategori och testar om ")
+    @DisplayName("testar findByCategory() och att söka alla produkter i en kategori och testar om det returneras 6 produkter")
     void whenSearchingForAnExistingCategory_thenReturnAllProductsInCategoryAndSizeShouldBeSix() {
         //given
 String category = "electronics";
@@ -58,6 +67,25 @@ String category = "electronics";
         assertNotEquals(7,listProduct.size());
     }
     @Test
+    @DisplayName("testar findByCategory() med en kategori som inte existerar")
+    void whenSearchingForANonExistingCategory_thenReturnFalse() {
+        //given
+        String title = "En dator";
+        String category = "electronics";
+        Product product = new Product(title,
+                23000.0,
+                "test category",
+                "Bra o ha",
+                "url");
+
+        //when
+        List<Product> listProduct = underTest.findByCategory(category);//returns all the products in the "electronics" category as a list should be 0
+        System.out.println(listProduct);
+        //then
+        Assertions.assertFalse(listProduct.contains(product));
+    }
+    @Test
+    @DisplayName("Testar findByTitle() normalflöde")
     void whenSearchingForAnExistingTitle_thenReturnThatProduct() {
         //given
         String title = "En dator";
@@ -79,6 +107,7 @@ String category = "electronics";
         );
     }
     @Test
+    @DisplayName("Testar findByTitle() felflöde")
     void whenSearchingForANonexistingTitle_thenReturnEmptyOptional() {
         //given
         String title = "Non existing title";
