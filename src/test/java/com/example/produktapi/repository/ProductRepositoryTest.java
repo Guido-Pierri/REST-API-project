@@ -22,9 +22,11 @@ class ProductRepositoryTest {
         underTest.deleteAll();
     }
     @Test
+    @DisplayName("Testar att findAll() returnerar 20 produkter")
     void testingOurRepository(){
     List<Product> products = underTest.findAll();
     Assertions.assertFalse(products.isEmpty());
+    assertEquals(20,products.size());
 }
 
     @Test
