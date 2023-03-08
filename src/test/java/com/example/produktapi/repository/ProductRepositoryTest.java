@@ -26,9 +26,10 @@ class ProductRepositoryTest {
     List<Product> products = underTest.findAll();
     Assertions.assertFalse(products.isEmpty());
 }
+
     @Test
-    @DisplayName("testar ")
-    void whenSearchingForAnExistingCategory_thenReturnAllProductsInCategory() {
+    @DisplayName("testar att söka alla produkter i en kategori och testar om det är rätt produkt")
+    void whenSearchingForAnExistingCategory_thenReturnAllProductsInCategoryAndCheckItIsTheSameProductCategory() {
         //given
         String title = "En dator";
         String category = underTest.findAllCategories().get(0); // assigns category of index 0 ("electronics") from findAllCategories() to the variable category
@@ -39,13 +40,23 @@ class ProductRepositoryTest {
                 "url");
         underTest.save(product);
         //when
-        List<Product> listProduct = underTest.findByCategory(category);
+        List<Product> listProduct = underTest.findByCategory(category);//returns all the products in the "electronics" category as a list
         //then
         Assertions.assertTrue(listProduct.contains(product));
         Assertions.assertFalse(listProduct.isEmpty());
-        Assertions.assertEquals(category, listProduct.get(listProduct.lastIndexOf(product)).getCategory());
+        Assertions.assertEquals(category, listProduct.get(listProduct.lastIndexOf(product)).getCategory());//checks if the category of the product created is the same as the last product in the listProduct list returned
     }
-
+    @Test
+    @DisplayName("testar att söka alla produkter i en kategori och testar om ")
+    void whenSearchingForAnExistingCategory_thenReturnAllProductsInCategoryAndSizeShouldBeSix() {
+        //given
+String category = "electronics";
+        //when
+        List<Product> listProduct = underTest.findByCategory(category);//returns all the products in the "electronics" category as a list
+        //then
+        assertEquals(6,listProduct.size());
+        assertNotEquals(7,listProduct.size());
+    }
     @Test
     void whenSearchingForAnExistingTitle_thenReturnThatProduct() {
         //given
@@ -75,8 +86,7 @@ class ProductRepositoryTest {
         // when
         Optional<Product> optionalProduct = underTest.findByTitle(title);
         //then
-        Assertions.assertFalse(optionalProduct.isPresent());
-        Assertions.assertTrue((optionalProduct.isEmpty()));
+
         Assertions.assertAll(
                 ()->assertTrue(optionalProduct.isEmpty()),
                 ()->assertFalse(optionalProduct.isPresent()),
